@@ -6,12 +6,12 @@ export default function ContactForm() {
   const [formData, setFormData] = useState({ name: '', email: '', phone: '', message: '' });
   const [submitted, setSubmitted] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setSubmitted(true);
     setFormData({ name: '', email: '', phone: '', message: '' });
@@ -43,6 +43,8 @@ export default function ContactForm() {
         type="text"
         id="name"
         name="name"
+        value={formData.name}
+        onChange={handleChange}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
         placeholder="Enter your name"
         required
@@ -57,6 +59,8 @@ export default function ContactForm() {
         type="email"
         id="email"
         name="email"
+        value={formData.email}
+        onChange={handleChange}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
         placeholder="Enter your email"
         required
@@ -71,6 +75,8 @@ export default function ContactForm() {
         type="tel"
         id="phone"
         name="phone"
+        value={formData.phone}
+        onChange={handleChange}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition"
         placeholder="Enter your phone number"
         required
@@ -84,6 +90,8 @@ export default function ContactForm() {
       <textarea
         id="message"
         name="message"
+        value={formData.message}
+        onChange={handleChange}
         rows={5}
         className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition resize-none"
         placeholder="Enter your message"
